@@ -1,0 +1,12 @@
+- as you know that node is a runtime which gives access to run the js code in server. but how and with which things the node.js is created.
+
+- so any node.js version has this 2 dependenies 1) v8 engine 2) libuv
+
+1) as you know the v8 engine is chrome's js engine which convert the js code to binary code to run in cpu so this same v8 engine is also used in node to convert the js code in server to binary and run in cpu.
+
+2) the libuv is opensorce project whic used to implement asynchronous I/O in node.
+so the libuv handels event lop and thread pool in node. which is for managing and heldling asynchronous tasks and heavy duty works.
+
+- also with this 2 a node also need c++ because the libuv is rettund in c++ and v8 also written in c++ and js.
+
+- so all the methods of http, file read etc are provided by libuv which is actuly ritten in c++ but node created in way that all this functions and modules are accessable just like we did in js code but they all are c++ code and run that way only in background.

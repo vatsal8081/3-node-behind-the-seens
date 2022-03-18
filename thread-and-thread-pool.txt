@@ -1,0 +1,15 @@
+- a thread is single smallest process running in the cpu prosessor.
+
+- as we already know unlike the other languages like python, php, ruby the node is single threaded. that mins we will run all the process of all the requests in one single thread only. if we have 10 users or 10000 users all requests of them will run in one single thread only.
+
+- when we run our node code the first node will execute the top level code then add required modules which we add in the code. then it will register the callbacks so in future if any callback execute the node will know about it. then at end the node starts the event loop.
+
+- a event loop is simply a place where the all callbacks related code gets execute but if we do any heavy task in event loop then we may block the thread so other users have to wait for complitation that heavy task.
+
+- to not block the main thread and do all heavy tasks in background the node use thread pool provided by the libuv.
+
+- the libuv gives us 4 other threads along with main thread so we can ofload that heavy tasks from main thread to those 4 threads to not block the main thread.
+
+- we can also configur the node to give more than 4 threads up to 128 threads but for most of the situations the 4 threads are more then enough.
+
+- all the heavy tasks will done in thread pool and othe will be in event loop so node will identify the heavy tasks and ofload them to libuv threads by it self.

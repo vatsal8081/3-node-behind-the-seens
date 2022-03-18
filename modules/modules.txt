@@ -1,0 +1,17 @@
+- in node every js files is consider as a serpate module 
+
+- a node js useses commonJs module syatem insted of the ES module syatem which is little diffrent  
+
+- there is one way to use ES module syatem in node by using the mjs file extension of defining the ES module in package json
+
+- in every file in node we have require function which we can use to import the node, developer or npm modules.
+
+- when the node runs it check the require packages and then first it go to find the package in core node modules if it not find there it will go find it in project level where we defined our own modules and the in it not finds it there it go to node_modules folder to find npm package. and if it's not there node gives err and stop executing
+
+- then when it findes the module the wrapping of the module code is done in one immideatly executeable function which provides exports of the module, require function, module, __filename, __dirname to us which was exported by module and taken by immideatly executable function as paramitter
+
+- then the ececutation of module code is done to fine any err if found
+
+- then node return the exports exported by module to us so we can assign it to any variable and use it in our code.
+
+- then the caching of module is done so node don't have to get all this module multiple times and it can provide it from catch if no change is done in module

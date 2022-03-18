@@ -1,0 +1,52 @@
+- a event loop is a heart of node.js arcticture and it is the thing that makes asynchronous possible in node.
+- event loop will start wroking after the top level code is executed
+
+- the event loop in node is use to run all the code which is inside the callback functions (not top level code) 
+
+- node is built around the callbacks and all the callback will be executed by event loop only.
+
+- it is cald the event loop because node follows the event driven arcticture where each and every process emits the specific event in node serve the the event loop listern this kind of events and execute the callbacks spicified for them. the event loop laso responsible for ofloading the heavy tasks to the thread pool.
+
+- a node event loop has 4 phases and every phases hase one callback queue where there can be one or more callback waiting to execute.
+
+- any callback comes to any phase's callback queue because it's event is triged so it hase to run callback so it comes to any one of this 4 phases.
+
+- a event loop execute any callback base on it's priority so every phase has it's onw priority 1 phase hase max and 4 phase hase least priority. and every callback comes to it's specific phase's callback queue only to execute base on priority.
+
+
+1) timers
+- this phase has max priority and any timers whic we set will come in this phase only so as soon as the timer finish we can run it's callback.
+
+2) I/O 
+- in this phase all the I/O related callback will come like request, response, file read wright etc. this phase's callback will run after all timer phase callbacks from queue is executed.
+
+3) immideat 
+- in this phase all the callback will come which should be run immideatly after I/O task done. any callback which should run after any request, response etc will be hear.
+
+4) close
+- in this phase all the callback which are related to closing on something like server, socket connection etc will come.
+
+- a event loop moves to next phase when there will be no any callback to execute from queue of current phase. 
+
+- after going through all phases event loop checks if there are any new callback come in the timer or I/O phase to execute if uses then it will continue the cycle otherwise it will close. and that was the reasion why when we just run simple scripts from node after executing it node stops and when we create the server it will stay running in the background because when we create a serve and listerning to any port the listerning is kind of I/O event which will stay on and on every time so event loop not close.
+
+- this are the main 4 type on phases which the event loop manage. but there is one very special kind of phase which is also managed by event loop which is Resolve Promise or nextTick 
+
+- this phase also has it's callback queue and when any callback comes to execute in this phase the event loop will run this callbacks just after finishing current phase no matter in which phase it is.
+
+- for ex if the event loop is in I/O phase and new callback come to Resolve Promise and nextTick phase then when event loop complete I/O phase it will run all callback from Resolve Promise and nextTick phase then it will continue to immideat phase.
+
+
+- because the node is single threaded all the 10 or 10000 users will going to use the same single thread and single event loop unlike other multy threading programming languages where every user gets it's own new thread and that make a node.js very light weight and fast. unlike other languages which needs to mutch cpu processing.
+
+- but because we have just one thread and one event loop for all users it's our respociblity to not block the event loop whic can easily happen when we right some code which can be to heavy for event loop. and for thate we have to avoid some of the well known senarios.
+
+1) using sycn versions of functions of node_modules. (allowed before the event loop is started in top level code which will execute only once but not other place)
+
+2) Don't pufform complex calculations like loops inside loops etc.
+
+3) be carfull with large json objects because it takes time to parse them.
+
+4) Don't use complex regular expressions.
+
+

@@ -1,0 +1,25 @@
+- a stream is just one kind of funcnality where we can read or wright data piece by piece not the whole at a time
+
+- a stream is very usefull to work with large size of data so all that data not have to load in memory and user don't have to wait for whole data to arrive or sent we can strat working of data as it start to come in small chunks piece by piece and then remove it from memory and can work on another piece when it comes.
+
+- in mode there are 4 types sterams and all this are instence of EventEmitter calls which we discuss earlyer in events section 
+
+1) redable stream
+- this is a stream which can only read (consume) the data
+- http requests and fs read stream are the example of this kind of sterams
+- this stream emit many events but the data and end are the main one.
+- pipe() and read() are the main functions of this kind of stream
+
+2) writable steram 
+- this is a stream which can only write the data 
+- http response and fs write steram are the example of this kind of sterem
+- this steram emit many events but the drain and finish are the main one.
+- write() and end() are the main functions of this kind of stream
+
+3) duplex stream
+- this kind of steram are both redable and writable
+- net websocket is the example of this kind of stream 
+
+4) transform steram
+- this kind of steram are both redable and writable and we can also transform the data as it is read or written
+- zlib and gzip are example of this kind of steram 

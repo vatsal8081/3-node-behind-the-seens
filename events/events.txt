@@ -1,0 +1,9 @@
+- a node js is designe base on event driven arcticture that mins there will be specific events which will be emitted on specific tasks like request hit, responsde, file read finish etc.
+
+- many of node modules emits this kind of events of specific tasks and many of node modules listern to this events so execute some code.
+
+- this event driven arcticture is very cleane because for ex if fs module want to do any http related stuff then insted of importing and using http funcnality in fs the fs can listern to event and base on that execute any http function.
+
+- that way one module will be less depandend on other one and it will be more cleane and readable.
+
+- we also can listern any events emited by node and work base on that by calling our own callback and can also create our own events.
